@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import Footer from '../pages/footer/Footer';
+// import Footer from '../pages/footer/Footer';
 import image from '../images/logo.png'
 
 

@@ -12,12 +12,12 @@ const Sidebar = () => {
           .then(data => setCategory(data))
      },[])
      return (
-          <div className='font-serif lg:pl-5 pl-1'>
+          <div className='font-serif lg:pl-5 pl-1 rounded'>
                <h2 className='text-4xl'> Courses: </h2>
                {
                     category.map(c => <p className=' rounded cursor-pointer px-2 py-1 text-xl mb-3 hover:bg-slate-200'
                          key={c.id}>
-                              <Link>{c.name}</Link>
+                              <Link className='' to={`/courses/${c.id}`}>{c.name}</Link>
                          </p>)
                }
           </div>
