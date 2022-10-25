@@ -9,7 +9,7 @@ const Hero = () => {
                          <h1 className="text-4xl font-bold leading-none sm:text-6xl">Learn from the best at<br /><span className="text-teal-600"> Course Arena</span>
                          </h1>
                          <p className="mt-6 mb-8 text-lg sm:mb-12"> Start or upgrade yourself with 100+ course from the best teachers.
-                              <br className="hidden md:inline lg:hidden" />You will also get degree and certificate for accelerate your journey.
+                              <br className="hidden md:inline lg:hidden" /> You will also get degree and certificate for accelerate your journey.
                          </p>
                          
                     </div>
