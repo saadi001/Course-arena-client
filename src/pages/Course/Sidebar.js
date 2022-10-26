@@ -17,7 +17,7 @@ const Sidebar = () => {
                {
                     category.map(c => <p className=' rounded cursor-pointer px-2 py-1 text-xl mb-3 hover:bg-slate-200'
                          key={c.id}>
-                              <Link className='' to={`/courses/${c.id}`}>{c.name}</Link>
+                              <Link to={`/courses/${c.id}`}><div>{c.name}</div></Link>
                          </p>)
                }
           </div>
