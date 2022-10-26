@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { createContext } from "react";
-import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth';
+import {createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth';
 import app from "../../firebase/firebase.config";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
 
 const Authprovider = ({children}) => {
      const [user, setUser] = useState(null);
      const [loading, setLoading] = useState(true);
 
-     const providerLogin = (provider) =>{
+     const providerLogin = () =>{
           setLoading(true);
           return signInWithPopup(auth, provider)
+     }
+
+     const githubPopup = () =>{
+          setLoading(true)
+          return signInWithPopup(auth, githubProvider)
      }
 
      const createUser = (email, password) =>{
@@ -34,16 +41,13 @@ const Authprovider = ({children}) => {
      }
 
      const logOut = () =>{
-          setLoading(true);
           return signOut(auth);
      }
 
      useEffect(()=>{
           const unsubscribe =  onAuthStateChanged(auth, (currentUser) =>{
                console.log('current user is: ', currentUser)
-               if(currentUser.null || currentUser.emailVerified){
-                    setUser(currentUser);
-               }
+               setUser(currentUser);
                setLoading(false);
           })
           return ()=>{
@@ -51,7 +55,7 @@ const Authprovider = ({children}) => {
           }
 },[])
 
-     const authInfo = {user, loading, providerLogin, logOut,createUser, signIn,setUser,updateUserProfile,verifyEmail,setLoading};
+     const authInfo = {user, loading, providerLogin, githubPopup, logOut,createUser, signIn,setUser,updateUserProfile,verifyEmail,setLoading};
      return (
           <AuthContext.Provider value={authInfo}>
                {children}

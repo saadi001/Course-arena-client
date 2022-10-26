@@ -8,9 +8,10 @@ import { useState } from 'react';
 
 
 
+
 const Login = () => {
      const [error, setError] = useState('');
-     const {signIn} = useContext(AuthContext);
+     const {signIn,providerLogin,githubPopup} = useContext(AuthContext);
 
      const handleForm = (e) =>{
           e.preventDefault();
@@ -31,6 +32,25 @@ const Login = () => {
                setError(error.message)
           })
      }
+
+     const loginWithPopup = () =>{
+          providerLogin()
+          .then(result =>{
+               const user = result.user;
+               console.log(user);
+          })
+          .catch(e => console.error(e))
+     }
+
+     const githubLoginPopup = () =>{
+          githubPopup()
+          .then(result =>{
+               const user = result.user;
+               console.log(user);
+          })
+          .catch(e => console.error(e))
+     }
+
      return (
           <div>
                <form onSubmit={handleForm} className="w-full max-w-md mx-auto border p-4 mt-5 rounded shadow-md">
@@ -57,8 +77,8 @@ const Login = () => {
                     <div className='flex justify-between mt-3 '>
                          <div><button type='submit' className='py-2 px-3 rounded bg-teal-500'>Login</button></div>
                          <div className='flex'>
-                              <div className='border rounded-md p-1 mr-3 cursor-pointer hover:bg-slate-200'><img className='w-9 h-7 ' src={googlePng} alt="" /></div>
-                              <div className='border p-1 rounded-md cursor-pointer hover:bg-slate-200'><img className='w-9 h-7' src={githubPng} alt="" /></div>
+                              <div onClick={loginWithPopup} className='border rounded-md p-1 mr-3 cursor-pointer hover:bg-slate-200'><img className='w-9 h-7 ' src={googlePng} alt="" /></div>
+                              <div onClick={githubLoginPopup} className='border p-1 rounded-md cursor-pointer hover:bg-slate-200'><img className='w-9 h-7' src={githubPng} alt="" /></div>
                          </div>
                     </div>
 

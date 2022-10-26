@@ -1,13 +1,13 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 const CourseDetails = () => {
      const course = useLoaderData();
      // console.log(course)
-     const { img, title, details, student, price, rating, author } = course;
+     const {id, img, title, details, student, price, rating, author } = course;
      return (
           <div className='max-w-[1370px] mx-auto p-4 bg-gray-800 text-white'>
-               <div className='w-11/12 md:w-10/12 mx-auto grid grid-cols-1 md:grid-cols-3  gap-4'>
+               <div className='w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3  gap-4'>
                     <div className='col-span-2'>
                          <p className='text-3xl font-serif font-semibold'>{title}</p>
                          <p className='text-slate-300 mt-2'>{details}</p>
@@ -20,7 +20,7 @@ const CourseDetails = () => {
                          </div>
                          <p className='text-sm text-slate-400'>Enrolled: {student}</p>
                          <div className='mt-3'>
-                         <button className='btn btn-accent mr-2'>Buy Now</button> <button className="btn btn-outline btn-accent">Add to cart</button>
+                         <Link to={`/checkout/${id}`}><button className='btn btn-accent mr-2'>Get premium access</button></Link>
                          </div>
                     </div>
                     <div className=''>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import googlePng from '../../images/google.png';
 import githubPng from '../../images/github.png';
 import { useContext } from 'react';
@@ -7,6 +7,7 @@ import { AuthContext } from '../../contexts/AuthProvider/Authprovider';
 
 const Register = () => {
      const [error, setError] = useState('');
+     const navigate = useNavigate();
 
      const {createUser,updateUserProfile} = useContext(AuthContext);
 
@@ -14,9 +15,10 @@ const Register = () => {
           e.preventDefault();
           const form = e.target;
           const name = form.name.value;
-          const url = form.url.value;
+          const photoURL = form.url.value;
           const email = form.email.value;
           const password = form.password.value;
+          console.log(photoURL);
 
           createUser(email, password)
           .then(res =>{
@@ -24,6 +26,9 @@ const Register = () => {
                console.log(user);
                form.reset();
                setError('');
+               handleUpdateProfile(name, photoURL);
+               navigate('/')
+
 
           })
           .catch(e=>{
@@ -32,6 +37,17 @@ const Register = () => {
           })
           
      }
+
+     const handleUpdateProfile = (name, photoURL) =>{
+          const profile = {
+               displayName: name,
+               photoURL: photoURL
+          }
+          updateUserProfile(profile)
+          .then(() =>{})
+          .catch(e => console.error(e))
+     }
+     
      return (
           <div className=''>
                <form onSubmit={handleForm} className="w-full max-w-md mx-auto border p-4 mt-5 rounded shadow-md">
@@ -65,7 +81,7 @@ const Register = () => {
                     <div className='flex justify-between mt-3 '>
                          <div><button type='submit' className='py-2 px-3 rounded bg-teal-500'>Register</button></div>
                          <div className='flex'>
-                              <div className='border rounded-md p-1 mr-3 cursor-pointer hover:bg-slate-200'><img className='w-9 h-7 ' src={googlePng} alt="" /></div>
+                              <div  className='border rounded-md p-1 mr-3 cursor-pointer hover:bg-slate-200'><img className='w-9 h-7 ' src={googlePng} alt="" /></div>
                               <div className='border p-1 rounded-md cursor-pointer hover:bg-slate-200'><img className='w-9 h-7' src={githubPng} alt="" /></div>
                          </div>
                     </div>
