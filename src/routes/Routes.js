@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../layout/Main";
 import Blog from "../pages/Blog/Blog";
 import Course from "../pages/Course/Course";
+import CourseDetails from "../pages/Course/CourseDetails";
 import Faq from "../pages/Faq/Faq";
 import Login from "../pages/forms/Login";
 import Register from "../pages/forms/Register";
@@ -20,6 +21,11 @@ export const router = createBrowserRouter([
                {
                     path: '/course',
                     element: <Course></Course>
+               },
+               {
+                    path:'/courses/:id',
+                    element: <CourseDetails></CourseDetails>,
+                    loader: ({params}) => fetch(`https://course-arena-sever.vercel.app/courses/${params.id}`)   
                },
                {
                     path: '/faq',
