@@ -17,7 +17,7 @@ const SingleCourse = ({ course }) => {
                          <p className='text-sm font-bold'>${price}</p>
                          <p className='text-sm font-bold'>{rating.number}</p>
                     </div>
-                    <button className='mt-1 bg-teal-500 hover:bg-teal-600 text-slate-700 hover:text-slate-800 py-[6px] px-2 rounded'><Link to={`/courses/${id}`}>Get premium access</Link></button>
+                    <button className='mt-1 font-serif bg-teal-500 hover:bg-teal-600 text-slate-700 hover:text-slate-800 py-[6px] px-2 rounded'><Link to={`/courses/${id}`}>See full details</Link></button>
                </div>
           </div>
      );
