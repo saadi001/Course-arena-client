@@ -18,7 +18,7 @@ const Checkout = () => {
                          <div className=' col-span-2'>
                               <p className='text-2xl font-semibold mb-2'>{title}</p>                              
                               <p className='font-semibold'>Author: {author.name}</p>
-                              <p className='text-slate-500'>Ratings: {rating.number}</p>
+                              <p className='text-slate-500 text-sm'>Ratings: {rating.number}</p>
                               <p className='text-slate-700 text-sm mt-3'>Published: {author.published_date}</p>
                          </div>
                     </div>
@@ -39,7 +39,7 @@ const Checkout = () => {
                          </div>
                          <div className='mt-3'>
                               <p className='text-slate-500 text-sm'>price:</p>
-                              <p className='font-semibold'>{price}</p>
+                              <p className='font-semibold'>${price}</p>
                          </div>
                          <div>
                               <p className='mt-2 text-sm text-slate-500'>card number:</p>
