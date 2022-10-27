@@ -9,6 +9,7 @@ import Login from "../pages/forms/Login";
 import Register from "../pages/forms/Register";
 import Home from "../pages/Home/Home";
 import NotFound from "../pages/NotFound/NotFound";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
      {
@@ -30,7 +31,7 @@ export const router = createBrowserRouter([
                },
                {
                     path: '/checkout/:id', 
-                    element: <Checkout></Checkout>,
+                    element: <PrivateRoute><Checkout></Checkout></PrivateRoute>,
                     loader: ({params}) => fetch(`https://course-arena-sever.vercel.app/courses/${params.id}`)
                },
                {

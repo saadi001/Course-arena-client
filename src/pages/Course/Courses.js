@@ -12,7 +12,7 @@ const Courses = () => {
           .then(data => setCourse(data))
      },[])
      return (
-          <div>
+          <div className='mx-2'>
                {
                     course.map(c => <SingleCourse key={c.id} course={c}></SingleCourse>)
                }

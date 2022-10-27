@@ -1,17 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import googlePng from '../../images/google.png';
 import githubPng from '../../images/github.png';
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider/Authprovider';
 import { useState } from 'react';
 
-
-
-
 const Login = () => {
      const [error, setError] = useState('');
      const {signIn,providerLogin,githubPopup} = useContext(AuthContext);
+     const navigate = useNavigate();
+     const location = useLocation();
+
+     const from = location.state?.from?.pathname || '/';
 
      const handleForm = (e) =>{
           e.preventDefault();
@@ -25,7 +26,8 @@ const Login = () => {
                const user = res.user;
                console.log(user);
                form.reset();
-               setError('')
+               setError('');
+               navigate(from, {replace: true});
           })
           .catch(error => {
                console.error(error)

@@ -5,9 +5,9 @@ import { AuthContext } from '../../contexts/AuthProvider/Authprovider';
 
 const Checkout = () => {
      const {user} = useContext(AuthContext);
-     const course = useLoaderData();
-     // console.log(course)
-     const { id, img, title, details, student, price, rating, author } = course;
+     const course = useLoaderData();     
+     const { img, title, price, rating, author } = course;
+
      return (
           <div className='max-w-1370 mx-auto mt-3'>
                <div className='grid  grid-cols-1 sm:grid-cols-3 gap-2 w-11/12 md:w-10/12 mx-auto'>
@@ -37,12 +37,16 @@ const Checkout = () => {
                          <div>
                               <p className='mt-3 text-sm text-slate-500'>Name: <br /> <span className='text-slate-800 text-base font-semibold'>{user?.displayName}</span></p>
                          </div>
+                         <div className='mt-3'>
+                              <p className='text-slate-500 text-sm'>price:</p>
+                              <p className='font-semibold'>{price}</p>
+                         </div>
                          <div>
                               <p className='mt-2 text-sm text-slate-500'>card number:</p>
                               <input className='border border-slate-400 rounded-sm px-1 py-[2px] w-10/12' type="password" name="cardnumber" id="" />
                          </div>
                          <div>
-                              <button className='bg-teal-500 mt-4 px-3 py-2 rounded'>Check Out</button>
+                              <button className='bg-teal-500 my-4 px-3 py-2 rounded'>Check Out</button>
                          </div>
                     </div>
                </div>

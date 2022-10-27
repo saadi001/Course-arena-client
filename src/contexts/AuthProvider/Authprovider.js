@@ -36,10 +36,6 @@ const Authprovider = ({children}) => {
           return updateProfile(auth.currentUser, profile);
      }
 
-     const verifyEmail = () =>{
-          return sendEmailVerification(auth.currentUser);
-     }
-
      const logOut = () =>{
           return signOut(auth);
      }
@@ -55,7 +51,7 @@ const Authprovider = ({children}) => {
           }
 },[])
 
-     const authInfo = {user, loading, providerLogin, githubPopup, logOut,createUser, signIn,setUser,updateUserProfile,verifyEmail,setLoading};
+     const authInfo = {user, loading, providerLogin, githubPopup, logOut,createUser, signIn,setUser,updateUserProfile,setLoading};
      return (
           <AuthContext.Provider value={authInfo}>
                {children}
